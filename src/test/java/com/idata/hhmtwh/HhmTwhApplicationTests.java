@@ -60,7 +60,7 @@ class HhmTwhApplicationTests {
                 System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  匹配："+xzqh.toString());
                 if (xzqh.isEmpty()){
                     System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  解析后："+xzqh.toString());
-                    FileWriter writer = new FileWriter("C:\\Users\\xht\\Desktop\\合肥矛调\\address4.csv");
+                    FileWriter writer = new FileWriter("C:\\Users\\xht\\Desktop\\合肥矛调\\address5.csv");
                     writer.append(sldw+","+targetAddress+"\n");
                 }
 
@@ -353,10 +353,7 @@ class HhmTwhApplicationTests {
             if (address.endsWith("人名调解委员会")) {
                 address = address.substring(0, address.length() - "人名调解委员会".length());
             }
-            //
-            if(address.contains("镇镇") && !address.endsWith("镇镇")){
-                address = address.split("镇镇")[1];
-            }
+
             else if (address.endsWith("警民联调室人民调解委员会")) {
                 address = address.substring(0, address.length() - "警民联调室人民调解委员会".length());
             } else if (address.endsWith("警民联调室调解委员会")) {
@@ -418,7 +415,13 @@ class HhmTwhApplicationTests {
             }else if (address.endsWith("行业纠纷调处中心")) {
                 address = address.substring(0, address.length() - "行业纠纷调处中心".length());
             }
-
+            //
+            if(address.equals("店埠镇镇南社区")){
+                address = "镇南社区";
+            }
+            if(address.contains("镇镇") && !address.endsWith("镇镇")){
+                address = address.split("镇镇")[1];
+            }
             if (address.contains("市") && !address.endsWith("市")) {
                 address = address.split("市")[1];
             }
@@ -434,7 +437,7 @@ class HhmTwhApplicationTests {
             if (address.contains("县") && !address.endsWith("县") && !address.contains("县桥") ) {
                 address = address.split("县")[1];
             }
-            if (address.contains("镇") && !address.endsWith("镇")) {
+            if (address.contains("镇") && !address.endsWith("镇") && !address.equals("镇南社区")) {
                 address = address.split("镇")[1];
             }
             if (address.contains("街道") && !address.endsWith("街道")) {

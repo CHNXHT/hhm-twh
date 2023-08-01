@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.idata.hhmtwh.mapper.T_SJKJ_RMTJ_AJBLMapper">
+
+    <resultMap id="BaseResultMap" type="com.idata.hhmtwh.model.T_SJKJ_RMTJ_AJBL">
+            <result property="jflx" column="JFLX" jdbcType="VARCHAR"/>
+            <result property="jfly" column="JFLY" jdbcType="VARCHAR"/>
+            <result property="xzqh" column="XZQH" jdbcType="VARCHAR"/>
+            <result property="slrq" column="SLRQ" jdbcType="TIMESTAMP"/>
+            <result property="fsrq" column="FSRQ" jdbcType="TIMESTAMP"/>
+            <result property="sadsrsl" column="SADSRSL" jdbcType="VARCHAR"/>
+            <result property="saje" column="SAJE" jdbcType="DECIMAL"/>
+            <result property="sjtsqtqk" column="SJTSQTQK" jdbcType="VARCHAR"/>
+            <result property="sjnmgjfqk" column="SJNMGJFQK" jdbcType="VARCHAR"/>
+            <result property="bh" column="BH" jdbcType="VARCHAR"/>
+            <result property="sldw" column="SLDW" jdbcType="VARCHAR"/>
+            <result property="slr" column="SLR" jdbcType="VARCHAR"/>
+            <result property="tjy" column="TJY" jdbcType="VARCHAR"/>
+            <result property="tjjg" column="TJJG" jdbcType="VARCHAR"/>
+            <result property="ajndjb" column="AJNDJB" jdbcType="VARCHAR"/>
+            <result property="jfjhqk" column="JFJHQK" jdbcType="VARCHAR"/>
+            <result property="ajyc" column="AJYC" jdbcType="VARCHAR"/>
+            <result property="xylx" column="XYLX" jdbcType="VARCHAR"/>
+            <result property="lxqk" column="LXQK" jdbcType="VARCHAR"/>
+            <result property="lxfs" column="LXFS" jdbcType="VARCHAR"/>
+            <result property="sfsfqr" column="SFSFQR" jdbcType="VARCHAR"/>
+            <result property="sfmy" column="SFMY" jdbcType="VARCHAR"/>
+            <result property="hfxs" column="HFXS" jdbcType="VARCHAR"/>
+            <result property="hfrq" column="HFRQ" jdbcType="TIMESTAMP"/>
+            <result property="ajzt" column="AJZT" jdbcType="VARCHAR"/>
+            <result property="ajbh" column="AJBH" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        JFLX,JFLY,XZQH,
+        SLRQ,FSRQ,SADSRSL,
+        SAJE,SJTSQTQK,SJNMGJFQK,
+        BH,SLDW,SLR,
+        TJY,TJJG,AJNDJB,
+        JFJHQK,AJYC,XYLX,
+        LXQK,LXFS,SFSFQR,
+        SFMY,HFXS,HFRQ,
+        AJZT,AJBH,JFJJ,
+        XYNR
+    </sql>
+
+</mapper>

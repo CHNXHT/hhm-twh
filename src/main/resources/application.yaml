@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: idata-baseline
+    ### ?????
+  datasource:
+    dynamic:
+      primary: own
+      strict: false
+      datasource:
+        own:
+          url: jdbc:mysql://172.16.16.32:3306/contradiction
+          username: root
+          password: idata@2023
+          driver-class-name: com.mysql.jdbc.Driver
+          hikari:
+            # ????????
+            maximum-pool-size: 12
+            # ??????????
+            minimum-idle: 5
+            # ????????
+            idle-timeout: 300000
+            # ??????
+            connection-timeout: 20000
+        middle:
+          url: jdbc:oracle:thin:@10.27.13.140:1521/zjkdb
+          username: U_MT
+          password: WYD5QzdzyyXG
+          driver-class-name: oracle.jdbc.driver.OracleDriver
+          hikari:
+            # ????????
+            maximum-pool-size: 12
+            # ??????????
+            minimum-idle: 5
+            # ????????
+            idle-timeout: 300000
+            # ??????
+            connection-timeout: 20000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+      ddl-auto: none
+server:
+  port: 8081
+logging:
+  file:
+    path: ./logs
+  level:
+    - com.idata: error
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#MyBatis??mapper????
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+

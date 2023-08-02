@@ -13,4 +13,18 @@
     <sql id="Base_Column_List">
         address,place_code,twh
     </sql>
+
+    <insert id="updateOrInsertClientInfo" useGeneratedKeys="true" parameterType="list" >
+        replace into t_twh_code_copy1
+        (<include refid="Base_Column_List"/>)
+        VALUES
+        <foreach collection="list" item="it" separator=",">
+            ( #{address},
+              #{placeCode},
+              #{it.twd}
+            )
+        </foreach>
+
+    </insert>
+
 </mapper>

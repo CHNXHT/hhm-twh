@@ -68,6 +68,7 @@ class HhmTwhApplicationTests {
                 String targetAddress = getTargetAddress(sldw);
                 //根据解析地址获取行政区划
                 List<t_organization> xzqh = getXzqh(targetAddress);
+                List<t_twh_code_copy1> tTwhCodeCopy1List = new ArrayList<>();
                 if (xzqh!=null && xzqh.size()==1){
                     String province = xzqh.get(0).getProvince();
                     String city = xzqh.get(0).getCity();
@@ -87,8 +88,10 @@ class HhmTwhApplicationTests {
                     tTwhCodeCopy1.setAddress(targetAddress);
                     tTwhCodeCopy1.setTwh(sldw);
                     tTwhCodeCopy1.setPlaceCode(result);
-                    twhCodeCopy1Mapper.insert(tTwhCodeCopy1);
+                    tTwhCodeCopy1List.add(tTwhCodeCopy1);
+//                    twhCodeCopy1Mapper.insert(tTwhCodeCopy1);
                 }
+                twhCodeCopy1Mapper.updateOrInsertClientInfo(tTwhCodeCopy1List);
 //                System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  匹配："+xzqh.toString());
 //                if (xzqh.isEmpty()){
 //                    System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  解析后："+xzqh.toString());

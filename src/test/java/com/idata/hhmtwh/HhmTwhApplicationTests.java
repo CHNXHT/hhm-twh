@@ -7,18 +7,23 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.idata.hhmtwh.mapper.T_SJKJ_RMTJ_AJBLMapper;
 import com.idata.hhmtwh.mapper.t_organizationMapper;
+import com.idata.hhmtwh.mapper.t_twh_code_copy1Mapper;
 import com.idata.hhmtwh.model.T_SJKJ_RMTJ_AJBL;
 import com.idata.hhmtwh.model.t_organization;
+import com.idata.hhmtwh.model.t_twh_code_copy1;
 import com.idata.hhmtwh.service.T_SJKJ_RMTJ_AJBLService;
 import com.idata.hhmtwh.service.t_organizationService;
+import com.idata.hhmtwh.service.t_twh_code_copy1Service;
+import org.apache.tomcat.util.buf.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import static java.util.Arrays.asList;
 
 @SpringBootTest
 class HhmTwhApplicationTests {
@@ -32,10 +37,15 @@ class HhmTwhApplicationTests {
     private t_organizationService tOrganizationService;
 
     @Autowired
+    private t_twh_code_copy1Service twhCodeCopy1Service;
+
+    @Autowired
     private T_SJKJ_RMTJ_AJBLMapper tSjkjRmtjAjblMapper;
 
     @Autowired
     private t_organizationMapper torganizationMapper;
+    @Autowired
+    private t_twh_code_copy1Mapper twhCodeCopy1Mapper;
 
     @Test
     @DS("middle")
@@ -57,6 +67,23 @@ class HhmTwhApplicationTests {
                 String targetAddress = getTargetAddress(sldw);
                 //根据解析地址获取行政区划
                 List<t_organization> xzqh = getXzqh(targetAddress);
+                if (xzqh.size()==1){
+                    String province = xzqh.get(0).getProvince();
+                    String city = xzqh.get(0).getCity();
+                    String county = xzqh.get(0).getCounty();
+                    String town = xzqh.get(0).getTown();
+                    String village = xzqh.get(0).getVillage();
+                    //拼接5级
+                    List<String> list1 = asList(province, city, county,town,village);
+
+                    String result= StringUtils.join(list1,',');
+                    System.out.println(result);
+//                    t_twh_code_copy1 tTwhCodeCopy1 = new t_twh_code_copy1();
+//                    tTwhCodeCopy1.setAddress(targetAddress);
+//                    tTwhCodeCopy1.setTwh(sldw);
+//                    tTwhCodeCopy1.setPlaceCode(province);
+//                    twhCodeCopy1Mapper.insert(tTwhCodeCopy1);
+                }
                 System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  匹配："+xzqh.toString());
                 if (xzqh.isEmpty()){
                     System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  解析后："+xzqh.toString());

@@ -56,6 +56,7 @@ class HhmTwhApplicationTests {
 
         Long ajblCount = tSjkjRmtjAjblMapper.selectCount(wrapper);
         int totalPage = (int) (ajblCount / 1000);
+        int count = 0;
         //分多少页
         for (int i = 1; i <= totalPage; i++) {
             Page<T_SJKJ_RMTJ_AJBL> page = new Page<>(i,10);
@@ -67,7 +68,7 @@ class HhmTwhApplicationTests {
                 String targetAddress = getTargetAddress(sldw);
                 //根据解析地址获取行政区划
                 List<t_organization> xzqh = getXzqh(targetAddress);
-                if (xzqh.size()==1){
+                if (xzqh!=null && xzqh.size()==1){
                     String province = xzqh.get(0).getProvince();
                     String city = xzqh.get(0).getCity();
                     String county = xzqh.get(0).getCounty();
@@ -77,22 +78,27 @@ class HhmTwhApplicationTests {
                     List<String> list1 = asList(province, city, county,town,village);
 
                     String result= StringUtils.join(list1,',');
-                    System.out.println(result);
-//                    t_twh_code_copy1 tTwhCodeCopy1 = new t_twh_code_copy1();
-//                    tTwhCodeCopy1.setAddress(targetAddress);
-//                    tTwhCodeCopy1.setTwh(sldw);
-//                    tTwhCodeCopy1.setPlaceCode(province);
-//                    twhCodeCopy1Mapper.insert(tTwhCodeCopy1);
+                    count++;
+                    if(count%1000==0){
+                        System.out.println("当前已传："+count);
+                    }
+//                    System.out.println(result);
+                    t_twh_code_copy1 tTwhCodeCopy1 = new t_twh_code_copy1();
+                    tTwhCodeCopy1.setAddress(targetAddress);
+                    tTwhCodeCopy1.setTwh(sldw);
+                    tTwhCodeCopy1.setPlaceCode(result);
+                    twhCodeCopy1Mapper.insert(tTwhCodeCopy1);
                 }
-                System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  匹配："+xzqh.toString());
-                if (xzqh.isEmpty()){
-                    System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  解析后："+xzqh.toString());
-                    FileWriter writer = new FileWriter("C:\\Users\\xht\\Desktop\\合肥矛调\\address5.csv");
-                    writer.append(sldw+","+targetAddress+"\n");
-                }
+//                System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  匹配："+xzqh.toString());
+//                if (xzqh.isEmpty()){
+//                    System.out.println("解析前："+sldw+"  =====  解析后："+targetAddress +"=====  解析后："+xzqh.toString());
+//                    FileWriter writer = new FileWriter("C:\\Users\\xht\\Desktop\\合肥矛调\\address5.csv");
+//                    writer.append(sldw+","+targetAddress+"\n");
+//                }
 
             }
         }
+        System.out.println("ajbl总量："+count);
     }
     public List<t_organization> getXzqh(String address){
         try {

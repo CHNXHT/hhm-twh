@@ -59,7 +59,7 @@ class HhmTwhApplicationTests {
         int count = 0;
         //分多少页
         for (int i = 1; i <= totalPage; i++) {
-            Page<T_SJKJ_RMTJ_AJBL> page = new Page<>(i,10);
+            Page<T_SJKJ_RMTJ_AJBL> page = new Page<>(i,200);
             Page<T_SJKJ_RMTJ_AJBL> ipage  = tSjkjRmtjAjblMapper.selectPage(page,wrapper);
             //分页
             for (T_SJKJ_RMTJ_AJBL tSjkjRmtjAjbl : ipage.getRecords()){

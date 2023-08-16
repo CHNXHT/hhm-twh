@@ -33,4 +33,5 @@
         phone,parent_id,del_flag,
         seal_path,xf_org_id,xf_parent_id
     </sql>
+
 </mapper>

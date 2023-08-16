@@ -30,14 +30,9 @@ class HhmTwhApplicationTests {
     private static final Logger LOGGER = LoggerFactory.getLogger(HhmTwhApplicationTests.class);
     private static final Logger MLOGGER = LoggerFactory.getLogger("GLMAPPER-TEST-LOG");
 
-    @Autowired
-    private T_SJKJ_RMTJ_AJBLService tSjkjRmtjAjblService;
+//    @Autowired
+//    private T_SJKJ_RMTJ_AJBLService tSjkjRmtjAjblService;
 
-    @Autowired
-    private t_organizationService tOrganizationService;
-
-    @Autowired
-    private t_twh_code_copy1Service twhCodeCopy1Service;
 
     @Autowired
     private T_SJKJ_RMTJ_AJBLMapper tSjkjRmtjAjblMapper;
@@ -50,7 +45,7 @@ class HhmTwhApplicationTests {
     @Test
     @DS("middle")
     void getall(){
-        List<T_SJKJ_RMTJ_AJBL> list = tSjkjRmtjAjblService.list();
+//        List<T_SJKJ_RMTJ_AJBL> list = tSjkjRmtjAjblService.list();
 
         QueryWrapper<T_SJKJ_RMTJ_AJBL> wrapper = new QueryWrapper();
 
